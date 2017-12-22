@@ -1,8 +1,7 @@
-package com.hazz.kotlinmvp.net
+package com.syiyi.andbase.net
 
 import com.syiyi.andbase.api.ApiService
 import com.syiyi.andbase.api.UriConstant
-import com.syiyi.andbase.net.OkHttpCreator
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

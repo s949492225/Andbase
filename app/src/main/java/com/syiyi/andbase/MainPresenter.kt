@@ -1,7 +1,7 @@
 package com.syiyi.andbase
 
 import android.util.Log
-import com.hazz.kotlinmvp.net.RetrofitManager
+import com.syiyi.andbase.net.RetrofitManager
 import com.syiyi.andbase.api.ApiException
 import com.syiyi.andbase.api.Helper
 import com.syiyi.andbase.bean.DataClass

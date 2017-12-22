@@ -1,4 +1,4 @@
-package com.hazz.kotlinmvp.utils
+package com.syiyi.andbase.util
 
 import android.annotation.SuppressLint
 import android.content.Context

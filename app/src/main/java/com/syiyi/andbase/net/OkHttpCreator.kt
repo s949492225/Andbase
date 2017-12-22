@@ -1,7 +1,6 @@
 package com.syiyi.andbase.net
 
-import com.hazz.kotlinmvp.net.RetrofitManager
-import com.hazz.kotlinmvp.utils.Preference
+import com.syiyi.andbase.util.Preference
 import com.syiyi.andbase.App
 import okhttp3.Cache
 import okhttp3.Interceptor

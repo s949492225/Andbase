@@ -30,25 +30,21 @@ object ExceptionEngine {
         val ex: ApiException
         if (e is HttpException) {             //HTTP错误
             ex = ApiException(e.code(), e.message())
-            return ex
         } else if (e is ApiException) {    //服务器返回的错误
             ex = e
-            return ex
         } else if (e is JsonParseException
                 || e is JSONException
                 || e is ParseException || e is MalformedJsonException) {  //解析数据错误
             ex = ApiException(API_SERVER_DATA_ERROR, "解析错误")
-            return ex
         } else if (e is ConnectException) {//连接网络错误
             ex = ApiException(API_CONNECT_ERROR, "连接失败")
-            return ex
         } else if (e is SocketTimeoutException) {//网络超时
             ex = ApiException(API_TIME_OUT_ERROR, "网络超时")
-            return ex
         } else {  //未知错误
             ex = ApiException(API_UN_KNOWN_ERROR, "未知错误")
-            return ex
         }
+        return ex
+
     }
 
 }
