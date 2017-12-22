@@ -29,9 +29,9 @@ abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         retainInstance = true
-        return inflater?.inflate(getLayoutId(), null)
+        return inflater.inflate(getLayoutId(), null)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
@@ -41,7 +41,7 @@ abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
         }
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
         initView()
