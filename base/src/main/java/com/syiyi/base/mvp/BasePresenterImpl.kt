@@ -8,14 +8,11 @@ import io.reactivex.disposables.Disposable
  *
  * Created by songlintao on 2017/12/19.
  */
-abstract class BasePresenterImp<T:IView<*>>(protected var view:T) : IPresenter {
-    private var mCompositeDisposable: CompositeDisposable? = null
+abstract class BasePresenterImp<T : IView<*>>(protected var view: T) : IPresenter {
+    private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    protected fun auto(s: Disposable) {
-        if (this.mCompositeDisposable == null) {
-            this.mCompositeDisposable = CompositeDisposable()
-        }
-        this.mCompositeDisposable!!.add(s)
+    protected fun auto(disposable: Disposable) {
+        this.mCompositeDisposable.add(disposable)
     }
 
     override fun onResume() {
@@ -23,6 +20,6 @@ abstract class BasePresenterImp<T:IView<*>>(protected var view:T) : IPresenter {
     }
 
     override fun onDetach() {
-        this.mCompositeDisposable!!.dispose()
+        this.mCompositeDisposable.clear()
     }
 }
