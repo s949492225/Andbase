@@ -11,8 +11,8 @@ import android.view.ViewGroup
  *
  * Created by songlintao on 2017/12/20.
  */
-abstract class BaseFragment<out T:IPresenter> : Fragment(), IView<T> {
-    var presenter: IPresenter? = null
+abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
+    protected lateinit var presenter: IPresenter
 
     /**
      * 视图是否加载完毕
@@ -22,6 +22,11 @@ abstract class BaseFragment<out T:IPresenter> : Fragment(), IView<T> {
      * 数据是否加载过了
      */
     private var hasLoadData = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter = createPresenter()
+    }
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,7 +48,7 @@ abstract class BaseFragment<out T:IPresenter> : Fragment(), IView<T> {
         lazyLoadDataIfPrepared()
     }
 
-    private fun lazyLoadDataIfPrepared() {
+    protected fun lazyLoadDataIfPrepared() {
         if (userVisibleHint && isViewPrepare && !hasLoadData) {
             lazyLoad()
             hasLoadData = true
@@ -64,22 +69,19 @@ abstract class BaseFragment<out T:IPresenter> : Fragment(), IView<T> {
 
     override fun onResume() {
         super.onResume()
-        presenter!!.onResume()
+        presenter.onResume()
     }
 
     override fun onDetach() {
         super.onDetach()
-        presenter!!.onDetach()
+        presenter.onDetach()
     }
 
     /**
      * 懒加载
      */
-    fun lazyLoad() {
-        if (presenter == null) {
-            presenter = createPresenter()
-            presenter!!.onAttach()
-        }
+    protected fun lazyLoad() {
+        presenter.onAttach()
     }
 
     override fun showLoading() {

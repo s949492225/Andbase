@@ -10,11 +10,13 @@ import android.support.v7.app.AppCompatActivity
  * Created by songlintao on 2017/12/19.
  */
 abstract class BaseActivity<T:IPresenter> : AppCompatActivity(), IView<T> {
-    var presenter: T? = null
+    protected lateinit var presenter: T
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(getLayoutId())
         initView()
+        presenter = createPresenter()
+        presenter.onAttach()
     }
 
     /**
@@ -28,22 +30,14 @@ abstract class BaseActivity<T:IPresenter> : AppCompatActivity(), IView<T> {
      */
     abstract fun initView()
 
-    override fun onStart() {
-        super.onStart()
-        if (presenter == null) {
-            presenter = createPresenter()
-            presenter!!.onAttach()
-        }
-    }
-
     override fun onResume() {
         super.onResume()
-        presenter!!.onResume()
+        presenter.onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter!!.onDetach()
+        presenter.onDetach()
     }
 
     /**

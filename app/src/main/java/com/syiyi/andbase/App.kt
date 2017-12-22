@@ -1,8 +1,8 @@
 package com.syiyi.andbase
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import kotlin.properties.Delegates
 
 /**
  *
@@ -10,8 +10,8 @@ import kotlin.properties.Delegates
  */
 class App : Application() {
     companion object {
-        var context: Context by Delegates.notNull()
-            private set
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
     }
 
     override fun onCreate() {
