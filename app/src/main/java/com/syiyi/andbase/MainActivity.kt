@@ -1,10 +1,12 @@
 package com.syiyi.andbase
 
 import android.os.Bundle
+import com.syiyi.andbase.bean.HomeBean
 import com.syiyi.base.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainPresenter>() {
+class MainActivity : BaseActivity<MainPresenter>(), IMainView {
+
 
     override fun createPresenter(): MainPresenter {
         return MainPresenter(this)
@@ -23,6 +25,10 @@ class MainActivity : BaseActivity<MainPresenter>() {
         tv.setOnClickListener {
             presenter.getData()
         }
+    }
+
+    override fun showData(data: HomeBean) {
+
     }
 
 }
