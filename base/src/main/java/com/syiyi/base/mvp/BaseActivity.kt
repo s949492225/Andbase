@@ -8,15 +8,14 @@ import android.support.v7.app.AppCompatActivity
  * 基类
  * Created by songlintao on 2017/12/19.
  */
-abstract class BaseActivity<T : IPresenter> : AppCompatActivity(), IView<T> {
-    protected lateinit var presenter: T
-    
+abstract class BaseActivity : AppCompatActivity(), IView {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        inject()
         initView()
-        presenter = createPresenter()
-        presenter.onAttach()
+        getPresenter().onAttach()
     }
 
     /**
@@ -32,12 +31,12 @@ abstract class BaseActivity<T : IPresenter> : AppCompatActivity(), IView<T> {
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume()
+        getPresenter().onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.onDetach()
+        getPresenter().onDetach()
     }
 
     /**
@@ -60,4 +59,6 @@ abstract class BaseActivity<T : IPresenter> : AppCompatActivity(), IView<T> {
     override fun showError(code: Int) {
 
     }
+
+    abstract fun inject()
 }

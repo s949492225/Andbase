@@ -11,8 +11,7 @@ import android.view.ViewGroup
  *
  * Created by songlintao on 2017/12/20.
  */
-abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
-    protected lateinit var presenter: IPresenter
+abstract class BaseFragment : Fragment(), IView {
 
     /**
      * 视图是否加载完毕
@@ -22,11 +21,6 @@ abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
      * 数据是否加载过了
      */
     private var hasLoadData = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter = createPresenter()
-    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,19 +63,20 @@ abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume()
+        getPresenter().onResume()
     }
 
     override fun onDetach() {
         super.onDetach()
-        presenter.onDetach()
+        getPresenter().onDetach()
     }
 
     /**
      * 懒加载
      */
     protected fun lazyLoad() {
-        presenter.onAttach()
+        inject()
+        getPresenter().onAttach()
     }
 
     override fun showLoading() {
@@ -92,6 +87,8 @@ abstract class BaseFragment<out T : IPresenter> : Fragment(), IView<T> {
 
     override fun showError(code: Int) {
     }
+
+    abstract fun inject()
 
 
 }
