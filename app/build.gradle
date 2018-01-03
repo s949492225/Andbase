@@ -23,6 +23,12 @@ android {
         }
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
 }
 
 dependencies {
@@ -32,10 +38,11 @@ dependencies {
     //dagger2
     compile 'com.google.dagger:dagger:2.11'
     kapt 'com.google.dagger:dagger-compiler:2.9'
+    implementation project(':base')
     //test
     testCompile 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation project(':base')
     testCompile 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-alpha01'
+    testImplementation "org.robolectric:robolectric:3.6.1"
 }
