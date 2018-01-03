@@ -56,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
     /**
      * optional
      */
-    override fun showError(code: Int) {
+    override fun showError(code: Int, message: String) {
 
     }
 

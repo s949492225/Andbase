@@ -8,5 +8,5 @@ interface IView {
     fun getPresenter(): IPresenter
     fun showLoading()
     fun dismissLoading()
-    fun showError(code: Int)
+    fun showError(code: Int, message: String)
 }

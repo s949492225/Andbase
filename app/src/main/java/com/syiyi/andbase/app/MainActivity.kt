@@ -41,4 +41,8 @@ class MainActivity : BaseActivity(), MainContract.View {
         Toast.makeText(this, data.toString(), Toast.LENGTH_LONG).show()
     }
 
+    override fun showError(code: Int, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
 }

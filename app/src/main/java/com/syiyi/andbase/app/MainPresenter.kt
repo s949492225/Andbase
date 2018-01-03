@@ -27,7 +27,7 @@ class MainPresenter constructor(view: MainContract.View) : BasePresenterImp<Main
                                 },
                                 object : ErrorConsumer() {
                                     override fun onError(e: ApiException) {
-                                        println(e)
+                                        view.showError(e.code, e.message!!)
                                     }
 
                                 }

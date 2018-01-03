@@ -85,7 +85,7 @@ abstract class BaseFragment : Fragment(), IView {
     override fun dismissLoading() {
     }
 
-    override fun showError(code: Int) {
+    override fun showError(code: Int, message: String) {
     }
 
     abstract fun inject()
