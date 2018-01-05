@@ -7,6 +7,7 @@ import com.syiyi.andbase.App
 import java.io.*
 import kotlin.reflect.KProperty
 
+@Suppress("unused")
 /**
  * Created by xuhao on 2017/12/11.
  * desc:kotlin委托属性+SharedPreference实例
@@ -73,7 +74,7 @@ class Preference<T>(val name:String, private val default:T) {
     /**
      * 序列化对象
 
-     * @param person
+     * @param obj
      * *
      * @return
      * *
@@ -131,7 +132,6 @@ class Preference<T>(val name:String, private val default:T) {
     /**
      * 返回所有的键值对
      *
-     * @param context
      * @return
      */
     fun getAll(): Map<String, *> {

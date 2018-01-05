@@ -1,7 +1,7 @@
 package com.syiyi.andbase.net
 
 import com.syiyi.andbase.api.ApiService
-import com.syiyi.andbase.api.UriConstant
+import com.syiyi.andbase.Configs
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,7 +23,7 @@ object RetrofitManager {
             synchronized(RetrofitManager::class.java) {
                 if (retrofit == null) {
                     retrofit = Retrofit.Builder()
-                            .baseUrl(UriConstant.BASE_URL)
+                            .baseUrl(Configs.BASE_URL)
                             .client(OkHttpCreator.client)
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create())

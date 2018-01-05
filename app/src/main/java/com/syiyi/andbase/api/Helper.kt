@@ -5,6 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 
+@Suppress("unused")
 /**
  *
  * Created by songlintao on 2017/12/20.
