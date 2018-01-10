@@ -5,14 +5,14 @@ import com.syiyi.base.net.ApiException
 import com.syiyi.base.net.Helper
 import com.syiyi.andbase.bean.HomeBean
 import com.syiyi.base.net.ErrorConsumer
-import com.syiyi.base.mvp.BasePresenterImp
+import com.syiyi.base.mvp.BasePresenterImpl
 import io.reactivex.functions.Consumer
 
 /**
  *
  * Created by songlintao on 2017/12/21.
  */
-class MainPresenter constructor(view: MainContract.View) : BasePresenterImp<MainContract.View>(view), MainContract.Presenter {
+class MainPresenter constructor(view: MainContract.View) : BasePresenterImpl<MainContract.View>(view), MainContract.Presenter {
     override fun onAttach() {
 //        getData()
     }
