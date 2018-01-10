@@ -1,6 +1,6 @@
-package com.syiyi.andbase.app.inject
+package com.syiyi.andbase.app.main.inject
 
-import com.syiyi.andbase.app.MainActivity
+import com.syiyi.andbase.app.main.MainActivity
 import dagger.Component
 
 

@@ -1,4 +1,4 @@
-package com.syiyi.andbase.api
+package com.syiyi.base.net
 
 /**
  * 出错的情况

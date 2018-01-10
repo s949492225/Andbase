@@ -1,4 +1,4 @@
-package com.syiyi.andbase.net
+package com.syiyi.base.net
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

@@ -1,7 +1,8 @@
 package com.syiyi.andbase.api
 
-import com.syiyi.andbase.net.ErrorConsumer
-import com.syiyi.andbase.net.RetrofitManager
+import com.syiyi.base.net.ApiException
+import com.syiyi.base.net.ErrorConsumer
+import com.syiyi.base.net.RetrofitManager
 import io.reactivex.functions.Consumer
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.syiyi.andbase.api
+package com.syiyi.base.net
 
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers

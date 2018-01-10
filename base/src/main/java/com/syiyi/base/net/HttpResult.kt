@@ -1,4 +1,4 @@
-package com.syiyi.andbase.api
+package com.syiyi.base.net
 
 /**
  * 数据统一返回格式

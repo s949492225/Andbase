@@ -1,4 +1,4 @@
-package com.syiyi.andbase.app
+package com.syiyi.andbase.app.main
 
 import com.syiyi.andbase.bean.HomeBean
 import com.syiyi.base.mvp.IPresenter

@@ -1,8 +1,8 @@
-package com.syiyi.andbase.app.inject
+package com.syiyi.andbase.app.main.inject
 
 import dagger.Provides
-import com.syiyi.andbase.app.MainContract
-import com.syiyi.andbase.app.MainPresenter
+import com.syiyi.andbase.app.main.MainContract
+import com.syiyi.andbase.app.main.MainPresenter
 import dagger.Module
 
 /**

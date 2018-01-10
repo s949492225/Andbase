@@ -1,10 +1,10 @@
-package com.syiyi.andbase.app
+package com.syiyi.andbase.app.main
 
-import com.syiyi.andbase.api.ApiException
-import com.syiyi.andbase.api.Helper
+import com.syiyi.andbase.api.api
+import com.syiyi.base.net.ApiException
+import com.syiyi.base.net.Helper
 import com.syiyi.andbase.bean.HomeBean
-import com.syiyi.andbase.net.ErrorConsumer
-import com.syiyi.andbase.net.RetrofitManager
+import com.syiyi.base.net.ErrorConsumer
 import com.syiyi.base.mvp.BasePresenterImp
 import io.reactivex.functions.Consumer
 
@@ -14,12 +14,12 @@ import io.reactivex.functions.Consumer
  */
 class MainPresenter constructor(view: MainContract.View) : BasePresenterImp<MainContract.View>(view), MainContract.Presenter {
     override fun onAttach() {
-        getData()
+//        getData()
     }
 
     override fun getData() {
         auto(
-                RetrofitManager.service.getFirstHomeData(1)
+                api().getFirstHomeData(1)
                         .compose(Helper.io2main())
                         .subscribe(
                                 Consumer { t ->

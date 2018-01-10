@@ -1,6 +1,5 @@
-package com.syiyi.andbase.net
+package com.syiyi.base.net
 
-import com.syiyi.andbase.api.ApiException
 import io.reactivex.functions.Consumer
 
 /**

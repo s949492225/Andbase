@@ -1,16 +1,12 @@
-package com.syiyi.andbase.net
+package com.syiyi.base.net
 
 import android.net.ParseException
 
 import com.google.gson.JsonParseException
 import com.google.gson.stream.MalformedJsonException
-import com.syiyi.andbase.api.ApiException
-
 import org.json.JSONException
-
 import java.net.ConnectException
 import java.net.SocketTimeoutException
-
 import retrofit2.HttpException
 
 @Suppress("MemberVisibilityCanPrivate")
