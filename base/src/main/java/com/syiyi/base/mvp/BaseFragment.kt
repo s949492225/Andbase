@@ -63,12 +63,12 @@ abstract class BaseFragment : Fragment(), IView {
 
     override fun onResume() {
         super.onResume()
-        getPresenter().onResume()
+        getPresenter()?.onResume()
     }
 
     override fun onDetach() {
         super.onDetach()
-        getPresenter().onDetach()
+        getPresenter()?.onDetach()
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class BaseFragment : Fragment(), IView {
      */
     protected fun lazyLoad() {
         inject()
-        getPresenter().onAttach()
+        getPresenter()?.onAttach()
     }
 
     override fun showLoading() {

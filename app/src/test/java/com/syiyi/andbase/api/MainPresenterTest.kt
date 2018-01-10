@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.syiyi.andbase.app.main.MainContract
 import com.syiyi.andbase.app.main.MainPresenter
+import org.junit.Assert
 import org.junit.ClassRule
 import org.junit.Test
 
@@ -25,5 +26,14 @@ class MainPresenterTest {
         val presenter = MainPresenter(view)
         presenter.onAttach()
         verify(view).showData(any())
+    }
+
+    @Test
+    fun fa() {
+        var a: String? = null
+        val count:Int = a?.length?:1
+        val b=10
+        Assert.assertEquals(count, 1)
+
     }
 }

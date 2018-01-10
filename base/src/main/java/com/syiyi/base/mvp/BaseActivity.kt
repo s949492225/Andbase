@@ -15,7 +15,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         setContentView(getLayoutId())
         inject()
         initView()
-        getPresenter().onAttach()
+        getPresenter()?.onAttach()
     }
 
     /**
@@ -31,12 +31,12 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onResume() {
         super.onResume()
-        getPresenter().onResume()
+        getPresenter()?.onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        getPresenter().onDetach()
+        getPresenter()?.onDetach()
     }
 
     /**

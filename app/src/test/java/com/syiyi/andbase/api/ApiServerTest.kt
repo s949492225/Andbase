@@ -13,7 +13,7 @@ import org.junit.Test
 class ApiServerTest {
     @Test
     fun getHomeData() {
-        RetrofitManager.service.getFirstHomeData(1)
+        api().getFirstHomeData(1)
                 .subscribe(
                         Consumer { t ->
                             val data = t.toString()
