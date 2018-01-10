@@ -15,8 +15,8 @@ import java.security.MessageDigest
 @Suppress("unused")
 object ImageLoader {
 
-    fun load(uri: String, @DrawableRes placeHolderId: Int = -1, radius: Float = 0F, isFitCenter: Boolean = false, imageView: ImageView) {
-        with(GlideApp.with(ContextHolder.context).load(uri), {
+    fun <T> load(data:T, @DrawableRes placeHolderId: Int = -1, radius: Float = 0F, isFitCenter: Boolean = false, imageView: ImageView) {
+        with(GlideApp.with(ContextHolder.context).load(data), {
             if (placeHolderId != -1)
                 placeholder(placeHolderId)
             if (radius != 0F)
