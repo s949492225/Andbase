@@ -15,5 +15,6 @@ class MainContract {
 
     interface View : IView {
         fun showData(data: HomeBean)
+        fun showData2(it: String?)
     }
 }

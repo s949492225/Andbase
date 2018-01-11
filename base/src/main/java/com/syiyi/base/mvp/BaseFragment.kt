@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.syiyi.base.other.back.BackHandledInterface
+import com.syiyi.base.other.back.BackHandlerHelper
 
 /**
  *
  * Created by songlintao on 2017/12/20.
  */
-abstract class BaseFragment : Fragment(), IView {
+abstract class BaseFragment : Fragment(), IView, BackHandledInterface {
 
     /**
      * 视图是否加载完毕
@@ -69,6 +71,10 @@ abstract class BaseFragment : Fragment(), IView {
     override fun onDetach() {
         super.onDetach()
         getPresenter()?.onDetach()
+    }
+
+    override fun onBackPressed(): Boolean {
+        return BackHandlerHelper.handleBackPress(this)
     }
 
     /**

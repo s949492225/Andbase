@@ -3,6 +3,8 @@ package com.syiyi.base.mvp
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import com.syiyi.base.other.back.BackHandlerHelper
+import com.syiyi.base.util.hideSoftInput
 
 /**
  * 基类
@@ -34,9 +36,20 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         getPresenter()?.onResume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        hideSoftInput(this)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         getPresenter()?.onDetach()
+    }
+
+    override fun onBackPressed() {
+        if (!BackHandlerHelper.handleBackPress(this)) {
+            super.onBackPressed()
+        }
     }
 
     /**

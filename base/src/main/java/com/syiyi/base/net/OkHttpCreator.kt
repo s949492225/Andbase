@@ -1,8 +1,6 @@
 package com.syiyi.base.net
 
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -12,13 +10,28 @@ import java.util.concurrent.TimeUnit
 object OkHttpCreator {
     val client = createClient()
     private fun createClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-                .addInterceptor(addQueryParameterInterceptor())  //参数添加
-                .addInterceptor(addHeaderInterceptor()) // header
-                .connectTimeout(60L, TimeUnit.SECONDS)
-                .readTimeout(60L, TimeUnit.SECONDS)
-                .writeTimeout(60L, TimeUnit.SECONDS)
-                .build()
+        return with(OkHttpClient.Builder(), {
+            addInterceptor(addQueryParameterInterceptor())  //参数添加
+            setCookie(this)
+            addInterceptor(addHeaderInterceptor()) // header
+            connectTimeout(60L, TimeUnit.SECONDS)
+            readTimeout(60L, TimeUnit.SECONDS)
+            writeTimeout(60L, TimeUnit.SECONDS)
+            build()
+        })
+    }
+
+    private fun setCookie(builder: OkHttpClient.Builder) {
+        builder.cookieJar(object : CookieJar {
+            override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
+                CookieHelper.saveFromResponse(url.host(), cookies)
+            }
+
+            override fun loadForRequest(url: HttpUrl): MutableList<Cookie> {
+                return CookieHelper.loadForRequest(url.host())
+            }
+
+        })
     }
 
     /**
