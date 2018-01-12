@@ -15,7 +15,7 @@ import org.robolectric.RobolectricTestRunner
 class ApiServerTest {
     @Test
     fun getHomeData() {
-        api().getFirstHomeData(1)
+        api().getHomeTabs()
                 .subscribe(
                         Consumer { t ->
                             val data = t.toString()

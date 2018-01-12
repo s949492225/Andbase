@@ -1,5 +1,6 @@
 package com.syiyi.base.net
 
+import com.syiyi.base.util.getVersionCode
 import okhttp3.*
 import java.util.concurrent.TimeUnit
 
@@ -56,6 +57,8 @@ object OkHttpCreator {
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder()
                     .method(originalRequest.method(), originalRequest.body())
+                    .addHeader("CLIENT_TYPE", "Android")
+                    .addHeader("CLIENT_VERSION", getVersionCode().toString())
             val request = requestBuilder.build()
             chain.proceed(request)
         }

@@ -5,15 +5,19 @@ import com.syiyi.andbase.R
 import com.syiyi.andbase.app.main.inject.DaggerMainComponent
 import com.syiyi.andbase.app.main.inject.MainModule
 import com.syiyi.andbase.bean.HomeBean
+import com.syiyi.andbase.bean.HomeTab
+import com.syiyi.base.ex.toastLong
+import com.syiyi.base.ex.toastShort
 import com.syiyi.base.image.ImageLoader
 import com.syiyi.base.mvp.BaseActivity
 import com.syiyi.base.mvp.IPresenter
+import com.syiyi.base.net.CookieHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
-    override fun showData2(it: String?) {
-        Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+    override fun showData2(it: HomeTab) {
+        Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
     }
 
     @Inject
@@ -36,7 +40,9 @@ class MainActivity : BaseActivity(), MainContract.View {
 //                , radius = 0.5F
 //                , imageView = image)
         tv.setOnClickListener {
-            presenter.getData()
+            val value = CookieHelper.getCookieValue("p.lrlz.com", "MPHPSESSID")
+            if (value != null)
+                toastShort(value)
         }
     }
 

@@ -9,7 +9,6 @@ import com.syiyi.base.ContextHolder
 import okhttp3.Cookie
 import okhttp3.HttpUrl
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  *
@@ -46,7 +45,8 @@ object CookieHelper {
     }
 
 
-    @Synchronized fun saveFromResponse(url: String, cookies: MutableList<Cookie>) {
+    @Synchronized
+    fun saveFromResponse(url: String, cookies: MutableList<Cookie>) {
         if (cookies.size > 0) {
             val list = ArrayList<Cookie>()
             cookies.filterNotTo(list) { it.hasExpired() }
@@ -55,7 +55,8 @@ object CookieHelper {
         }
     }
 
-    @Synchronized fun loadForRequest(url: String): MutableList<Cookie> {
+    @Synchronized
+    fun loadForRequest(url: String): MutableList<Cookie> {
         return if (cookiesMap.containsKey(url)) cookiesMap[url]!! else Collections.emptyList()
     }
 
@@ -69,5 +70,15 @@ object CookieHelper {
 
     private fun parseHost(host: String): HttpUrl {
         return HttpUrl.parse("http://" + host)!!
+    }
+
+    @Synchronized
+    fun getCookieValue(host: String, cookieKey: String): String? {
+        val lists = cookiesMap[host]
+        return if (lists != null) {
+            val cookie = lists.find { !it.hasExpired() && it.name() == cookieKey }
+            cookie?.value()
+        } else
+            null
     }
 }
