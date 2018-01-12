@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap
  * Created by songlintao on 2018/1/11.
  */
 object CookieHelper {
-    private var cookiesMap: ConcurrentHashMap<String, MutableList<Cookie>> = ConcurrentHashMap()
+    private var cookiesMap: HashMap<String, MutableList<Cookie>> = HashMap()
     private var prefs: SharedPreferences = ContextHolder.context.getSharedPreferences("cookie", Context.MODE_PRIVATE)
     private val SPLIT = "$--$"
 
@@ -46,7 +46,7 @@ object CookieHelper {
     }
 
 
-    fun saveFromResponse(url: String, cookies: MutableList<Cookie>) {
+    @Synchronized fun saveFromResponse(url: String, cookies: MutableList<Cookie>) {
         if (cookies.size > 0) {
             val list = ArrayList<Cookie>()
             cookies.filterNotTo(list) { it.hasExpired() }
@@ -55,7 +55,7 @@ object CookieHelper {
         }
     }
 
-    fun loadForRequest(url: String): MutableList<Cookie> {
+    @Synchronized fun loadForRequest(url: String): MutableList<Cookie> {
         return if (cookiesMap.containsKey(url)) cookiesMap[url]!! else Collections.emptyList()
     }
 
