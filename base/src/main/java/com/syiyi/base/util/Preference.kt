@@ -12,9 +12,8 @@ import kotlin.reflect.KProperty
  * Created by xuhao on 2017/12/11.
  * desc:kotlin委托属性+SharedPreference实例
  */
-class Preference<T>(val name: String, private val default: T) {
-
-
+class Preference<T>(val name: String, private val default: T)
+{
     companion object {
         private val file_name = "kotlin_mvp_file"
     }
@@ -57,29 +56,14 @@ class Preference<T>(val name: String, private val default: T) {
         return res as T
     }
 
-    /**
-     * 删除全部数据
-     */
     fun clearPreference() {
         prefs.edit().clear().apply()
     }
 
-    /**
-     * 根据key删除存储数据
-     */
     fun clearPreference(key: String) {
         prefs.edit().remove(key).apply()
     }
 
-    /**
-     * 序列化对象
-
-     * @param obj
-     * *
-     * @return
-     * *
-     * @throws IOException
-     */
     @Throws(IOException::class)
     private fun <A> serialize(obj: A): String {
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -93,47 +77,22 @@ class Preference<T>(val name: String, private val default: T) {
         return serStr
     }
 
-    /**
-     * 反序列化对象
-
-     * @param str
-     * *
-     * @return
-     * *
-     * @throws IOException
-     * *
-     * @throws ClassNotFoundException
-     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IOException::class, ClassNotFoundException::class)
     private fun <A> deSerialization(str: String): A {
         val redStr = java.net.URLDecoder.decode(str, "UTF-8")
-        val byteArrayInputStream = ByteArrayInputStream(
-                redStr.toByteArray(charset("ISO-8859-1")))
-        val objectInputStream = ObjectInputStream(
-                byteArrayInputStream)
+        val byteArrayInputStream = ByteArrayInputStream(redStr.toByteArray(charset("ISO-8859-1")))
+        val objectInputStream = ObjectInputStream(byteArrayInputStream)
         val obj = objectInputStream.readObject() as A
         objectInputStream.close()
         byteArrayInputStream.close()
         return obj
     }
 
-
-    /**
-     * 查询某个key是否已经存在
-     *
-     * @param key
-     * @return
-     */
     fun contains(key: String): Boolean {
         return prefs.contains(key)
     }
 
-    /**
-     * 返回所有的键值对
-     *
-     * @return
-     */
     fun getAll(): Map<String, *> {
         return prefs.all
     }

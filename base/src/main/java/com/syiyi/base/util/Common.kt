@@ -5,11 +5,15 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.view.inputmethod.InputMethodManager
 import com.syiyi.base.ContextHolder
+import java.util.concurrent.Executors
 
 /**
  * 通用的工具类
  * Created by songlintao on 2018/1/11.
  */
+
+val CommonPool = Executors.newFixedThreadPool(2 * Runtime.getRuntime().availableProcessors())
+
 fun hideSoftInput(activity: Activity) {
     val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     if (imm.isActive && activity.currentFocus != null) {
